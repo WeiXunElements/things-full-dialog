@@ -1,0 +1,33 @@
+{
+  "name": "things-full-dialog",
+  "version": "0.0.1",
+  "authors": [
+    "Hatio Lab. <heartyoh@hatiolab.com>"
+  ],
+  "description": "An element providing Date Picker, Time Picker and Date Range Pickger (things-date-from-to).",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "things-button.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/ThingsElements/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "paper-dialog": "PolymerElements/paper-dialog#^1.0.4",
+    "paper-dialog-scrollable": "PolymerElements/paper-dialog-scrollable#^1.1.4",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^1.1.4",
+    "neon-animation": "PolymerElements/neon-animation#^1.2.2"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "iron-demo-helpers": "^1.2.3",
+    "things-button": "ThingsElements/things-button#^0.0.1"
+  }
+}

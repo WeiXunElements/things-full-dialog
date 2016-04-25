@@ -1,0 +1,96 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2016 The Things Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at https://github.com/ThingsElements/things-full-dialog/LICENSE.txt
+The complete set of authors may be found at https://github.com/ThingsElements/things-full-dialog/AUTHORS.txt
+The complete set of contributors may be found at https://github.com/ThingsElements/things-full-dialog/CONTRIBUTORS.txt
+Code distributed by Hatiolab as part of the things project is also
+subject to an additional IP rights grant found at https://github.com/ThingsElements/things-full-dialog/PATENTS.txt
+-->
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>things-full-dialog demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../things-button/things-button.html">
+  
+  <link rel="import" href="../things-full-dialog.html">
+
+  <style is="custom-style">
+
+    .output {
+      margin-top: 20px;
+      word-wrap: break-word;
+      @apply(--paper-font-common-code);
+    }
+    form > paper-button {
+      width: 45%;
+      margin-top: 20px;
+    }
+    form > paper-button:not([disabled]) {
+      background: var(--paper-light-blue-500);
+      color: white;
+    }
+    button {
+      margin-top: 20px;
+    }
+    paper-spinner {
+      width: 14px;
+      height: 14px;
+      margin-right: 20px;
+    }
+    paper-dropdown-menu {
+      display: block;
+    }
+    demo-snippet {
+      --demo-snippet-code: {
+        max-height: 300px;
+      };
+    }
+
+  </style>
+
+</head>
+
+<body unresolved>
+  <demo-snippet class="centered-demo">
+    <template>
+      <sample-full-dialog></sample-full-dialog>
+
+      <dom-module id="sample-full-dialog">
+        <template>
+          <things-full-dialog
+            id="common-full-dialog">
+          </things-full-dialog>
+
+          <things-button on-tap="openDialog">Open</things-button>
+        </template>
+
+        <template is="dom-bind" id="sample-template">
+          <things-input value="Things Full Dialog"></things-input>
+        </template>
+
+        <script>
+          Polymer({
+            is: "sample-full-dialog",
+
+            openDialog: function() {
+              var element = document.createElement(null);
+              var dialog = this.$['common-full-dialog'];
+              dialog.openBasicDialog(element, true, null);
+            }
+          });
+        </script>
+      </dom-module>
+    </template>
+  </demo-snippet>
+
+</body>
+</html>
