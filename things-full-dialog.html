@@ -63,7 +63,6 @@
     is: 'things-full-dialog',
 
     properties: {
-      
       /**
       * Dialog 내에 포함될 뷰 
       */
@@ -75,7 +74,7 @@
        * Dialog가 오픈된 후 콜백 
        */
       openCallback: {
-        type: Object
+        type: Function
       }
     },
 
@@ -83,22 +82,26 @@
       'dialog.iron-overlay-opened' : '_openHandler'
     },
 
-    ready:function () {
+    /**
+     * Life Cycle
+     */
+    attached: function () {
       // add event listners to dccumnet to listen gloabl event
-      document.addEventListener('things-open-full-screen-view', function(event){
+      document.addEventListener('things-open-full-screen-view', function(event) {
         var request = event.detail;
-        this.openFullScreenDialog(request.view,request.modal,request.record);
+        this.openFullScreenDialog(request.view, request.modal, request.record);
       }.bind(this));
        
-      document.addEventListener('things-open-popup-view', function(event){
+      document.addEventListener('things-open-popup-view', function(event) {
         var request = event.detail;
-        this.openBasicDialog(request.view,request.modal,request.openCallback);
+        this.openBasicDialog(request.view, request.modal, request.openCallback);
       }.bind(this));
 
-      document.addEventListener('things-close-popup-view', function(event){
+      document.addEventListener('things-close-popup-view', function(event) {
         this.closeBasicDialog();
       }.bind(this));
     },
+
     /**
      * View를 Full Screen 다이얼로그 내에 오픈한다.
      *
@@ -123,7 +126,11 @@
       var scrollable = this.$.scrollroot.$.scrollable;
 
       if(this.detailView) {
-        scrollable.removeChild(this.detailView);
+        try {
+          scrollable.removeChild(this.detailView);
+        } catch(e) {
+          console.log(e);
+        }
       } 
 
       if(this.openCallback) {
