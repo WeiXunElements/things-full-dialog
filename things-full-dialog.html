@@ -6,28 +6,16 @@
 <link rel="import" href="../neon-animation/animations/fade-out-animation.html">
 
 <!--
-`<things-full-dialog>` 애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다. * 주의 : 이 Dialog는 Document에 등록되는 Event를 Trigger하기에 한 시스템에 단 한번만 사용될 것을 권장한다.
+애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다.
+** 주의 : 이 Dialog는 Document에 등록되는 Event를 Trigger하기에 한 시스템에 단 한번만 사용될 것을 권장한다.
 
-  Example
+  Example:
 
-    <template is="dom-bind" id="sample-template">
-      <things-input value="Things Full Dialog"></things-input>
-    </template>
+  <things-full-dialog></things-full-dialog>
 
-    <script>
-      Polymer({
-        is: "sample-full-dialog",
-
-        openDialog: function() {
-          var element = document.createElement(null);
-          var dialog = this.$['common-full-dialog'];
-          dialog.openBasicDialog(element, true, null);
-        }
-      });
-    </script>  
-
-@demo demo/demo-things-full-dialog.html
+@demo demo/demo-full-dialog.html
 -->
+
 <dom-module id="things-full-dialog">
   <style>
     :host {
