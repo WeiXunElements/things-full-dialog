@@ -47,12 +47,12 @@
       id='dialog' 
       entry-animation="scale-up-animation"
       exit-animation="fade-out-animation">
-
       <paper-dialog-scrollable id="scrollroot">
       </paper-dialog-scrollable>
 
-      <div class="group-btnline">
-        <paper-button dialog-dismiss>Close</paper-button>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm autofocus>OK</paper-button>
       </div>
     </paper-dialog>
   </template>
@@ -136,7 +136,7 @@
       if(this.openCallback) {
         this.openCallback = null;
       }
-
+      console.log(view);
       this.detailView = view;
       this.openCallback = openCallback;
       scrollable.appendChild(this.detailView);
