@@ -1,16 +1,16 @@
 {
   "name": "things-full-dialog",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "authors": [
     "Hatio Lab. <heartyoh@hatiolab.com>"
   ],
-  "description": "An element providing Date Picker, Time Picker and Date Range Pickger (things-date-from-to).",
+  "description": "프로젝트에서 하나의 다이어로그로 모든 화면을 담을 컨테너 다이아로그 Things.ViewOpenBehavior와 동시에 사용된다.",
   "keywords": [
     "web-component",
     "polymer",
     "seed"
   ],
-  "main": "things-button.html",
+  "main": "things-full-dialog.html",
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/ThingsElements/seed-element/",
   "ignore": [
