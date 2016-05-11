@@ -23,6 +23,19 @@
       margin: 1em;
     }
 
+    paper-toolbar {
+      background-color:var(--things-primary-background-color);
+      height:45px;
+    }
+
+    paper-toolbar::shadow #topBar {
+      height:45px;
+    }
+
+    paper-toolbar::shadow .title {
+      margin-left:32px !important;
+    }    
+
     paper-dialog {
       position: fixed;
       top: 10%;
@@ -47,7 +60,11 @@
       id='dialog' 
       entry-animation="scale-up-animation"
       exit-animation="fade-out-animation">
+      
       <paper-dialog-scrollable id="scrollroot">
+        <paper-toolbar>
+          <span class="title">[[title]]</span>
+        </paper-toolbar>
       </paper-dialog-scrollable>
 
       <div class="buttons">
