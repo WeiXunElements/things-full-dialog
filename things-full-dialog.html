@@ -81,6 +81,13 @@
 
     properties: {
       /**
+       * 다이얼로그 타이틀
+       */
+      title: {
+        type: String
+      },
+
+      /**
       * Dialog 내에 포함될 뷰 
       */
       detailView: {
@@ -138,6 +145,7 @@
      */
     openBasicDialog: function(view, modal, openCallback) {
       var dialog = this.$.dialog;
+      this.title = view.title;
       dialog.modal = modal;
       dialog.noCancelOnEscKey = false;
       var scrollable = this.$.scrollroot.$.scrollable;
@@ -153,7 +161,7 @@
       if(this.openCallback) {
         this.openCallback = null;
       }
-      console.log(view);
+      
       this.detailView = view;
       this.openCallback = openCallback;
       scrollable.appendChild(this.detailView);
