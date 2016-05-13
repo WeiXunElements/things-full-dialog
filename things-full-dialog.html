@@ -46,15 +46,20 @@
       left: 15%;
       right: 15%;
       margin: 0px;
+      @apply(--layout-flex);
+      @apply(--layout-vertical);
     }
     .buttonsGroup {
       @apply(--layout-horizontal);
       @apply(--layout-end-justified);
-      @apply(--layout-flex)
+      @apply(--layout-flex);
     }
     .scrollroot {
       margin-top: 0px !important;
+      @apply(--layout-flex);
+      @apply(--layout-vertical);
     }
+    .scrollroot::content #detail-view{@apply(--layout-flex);}
   </style>
 
   <template>
@@ -70,7 +75,7 @@
         </div>
       </paper-toolbar>
 
-      <div id="scrollroot" class="scrollroot layout flex-9">
+      <div id="scrollroot" class="scrollroot">
       </div>
     </paper-dialog>
   </template>
