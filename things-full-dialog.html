@@ -1,11 +1,11 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-dialog/paper-dialog.html">
-<link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
-<link rel="import" href="../paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../paper-scroll-header-panel/paper-scroll-header-panel.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
+
 <!--
 애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다.
 ** 주의 : 이 Dialog는 Document에 등록되는 Event를 Trigger하기에 한 시스템에 단 한번만 사용될 것을 권장한다.
@@ -81,7 +81,6 @@
         <span class="title">[[title]]</span>
         <div class="buttonsGroup">
             <button dialog-dismiss class="close-btn"></button>
-            <!-- <paper-button dialog-confirm autofocus>OK</paper-button> -->
         </div>
       </paper-toolbar>
 
@@ -119,8 +118,7 @@
     },
 
     listeners: {
-      'dialog.iron-overlay-opened' : '_openHandler',
-      'dialog.iron-resize' :'_onResize'
+      'dialog.iron-overlay-opened' : '_openHandler'
     },
 
     /**
@@ -180,12 +178,9 @@
       }
       
       this.detailView = view;
-      // this.$.dialog.fitInto=this.detailView;
-
       this.openCallback = openCallback;
       scrollable.appendChild(this.detailView);
       dialog.open();
-      // this.$.dialog.refit()    
     },
 
     /**
@@ -202,13 +197,6 @@
       if(this.openCallback) {
         this.openCallback.apply(this.detailView);
       }
-    },
-    _onResize:function (e) {
-      //this logic is for resize
-      
-      // if(this.detailView){
-      //   this.detailView.style.height = (this.$.dialog.clientHeight-this.$.scrollroot.clientHeight-20)+'px'; 
-      // }
     }
 
   });
