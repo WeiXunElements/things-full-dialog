@@ -7,12 +7,12 @@
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
 
 <!--
-애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다.
+### 애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다.
 ** 주의 : 이 Dialog는 Document에 등록되는 Event를 Trigger하기에 한 시스템에 단 한번만 사용될 것을 권장한다.
 
-  Example:
+    Example:
 
-  <things-full-dialog></things-full-dialog>
+      <things-full-dialog></things-full-dialog>
 
 @demo demo/index.html
 -->
@@ -75,7 +75,7 @@
 
   <template>
     <paper-dialog
-      id='dialog' 
+      id='dialog'
       entry-animation="scale-up-animation"
       exit-animation="fade-out-animation">
       <paper-toolbar>
@@ -98,20 +98,23 @@
     properties: {
       /**
        * 다이얼로그 타이틀
+       * @type: String
        */
       title: {
         type: String
       },
 
       /**
-      * Dialog 내에 포함될 뷰 
+      * Dialog 내에 포함될 뷰
+      * @type: Object
       */
       detailView: {
         type: Object
       },
 
       /**
-       * Dialog가 오픈된 후 콜백 
+       * Dialog가 오픈된 후 콜백
+       * @type: Function
        */
       openCallback: {
         type: Function
@@ -131,7 +134,7 @@
         var request = event.detail;
         this.openFullScreenDialog(request.view, request.modal, request.record);
       }.bind(this));
-       
+
       document.addEventListener('things-open-popup-view', function(event) {
         var request = event.detail;
         this.openBasicDialog(request.view, request.modal, request.openCallback);
@@ -172,12 +175,12 @@
         } catch(e) {
           console.log(e);
         }
-      } 
+      }
 
       if(this.openCallback) {
         this.openCallback = null;
       }
-      
+
       this.detailView = view;
       this.openCallback = openCallback;
       scrollable.appendChild(this.detailView);
@@ -192,7 +195,7 @@
     },
 
     /**
-     * 다이얼로그가 오픈된 경우 핸들러 
+     * 다이얼로그가 오픈된 경우 핸들러
      */
     _openHandler: function(e) {
       if(this.openCallback) {
