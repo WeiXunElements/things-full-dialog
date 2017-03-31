@@ -98,7 +98,8 @@
     properties: {
       /**
        * 다이얼로그 타이틀
-       * @type: String
+       * *******
+       * @type {String}
        */
       title: {
         type: String
@@ -106,7 +107,8 @@
 
       /**
       * Dialog 내에 포함될 뷰
-      * @type: Object
+      * *******
+      * @type {Object}
       */
       detailView: {
         type: Object
@@ -114,7 +116,8 @@
 
       /**
        * Dialog가 오픈된 후 콜백
-       * @type: Function
+       * *******
+       * @type {Function}
        */
       openCallback: {
         type: Function
@@ -127,6 +130,7 @@
 
     /**
      * Life Cycle
+     * *******
      */
     attached: function () {
       // add event listners to dccumnet to listen gloabl event
@@ -147,7 +151,7 @@
 
     /**
      * View를 Full Screen 다이얼로그 내에 오픈한다.
-     *
+     *********
      * @param {Object} view 오픈할 view
      * @param {Boolean} modal modal로 오픈할 지 여부
      */
@@ -157,7 +161,7 @@
 
     /**
      * View를 기본적인 다이얼로그 내에 오픈한다.
-     *
+     *******
      * @param {Object} view 오픈할 view
      * @param {Boolean} modal modal로 오픈할 지 여부
      * @param {Object} openCallback
@@ -189,6 +193,7 @@
 
     /**
      * View를 기본적인 다이얼로그 내에 닫는다.
+     * ********
      */
     closeBasicDialog: function() {
       this.$.dialog.close();
