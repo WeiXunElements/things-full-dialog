@@ -11,6 +11,7 @@ Example:
 `things-open-popup-view`, `things-close-popup-view`를 받아서 Dialog Open
 `things-framework`에서는 `things-dialog-manger`로 모든 popup event를 처리한다.
 `event.detail`에는 아래와 같은 내용이 포함될 수 있다.
+
 `view` 필수
 `modal` option
 `openCallback` option
