@@ -1,20 +1,21 @@
 # things-full-dialog
 
-#### 애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다.
-** 주의 : 이 Dialog는 Document에 등록되는 Event를 Trigger하기에 한 시스템에 단 한번만 사용될 것을 권장한다.
+#### There is only one component in the application, and the screen is reconfigured and opened whenever the dialog is opened.
+** Note : Since this dialog triggers events registered in the Document, it is recommended to use it only once in one system.
 
 Example:
 ```html
       <things-full-dialog></things-full-dialog>
 ```
 
-`things-open-popup-view`, `things-close-popup-view`를 받아서 Dialog Open
-`things-framework`에서는 `things-dialog-manger`로 모든 popup event를 처리한다.
-`event.detail`에는 아래와 같은 내용이 포함될 수 있다.
-`view` 필수
-`modal` option
-`openCallback` option
-`closeCallback` option
+Open the Dialog by receiving `things-open-popup-view` and `things-close-popup-view`.
+In `things-framework`, `things-dialog-manager` handles all popup events.
+`event.detail` may contain the following information.
+
+`view` mandatory
+`modal` optional
+`openCallback` optional
+`closeCallback` optional
 
 Example :
 ```js
@@ -40,8 +41,7 @@ Example :
 
 ## Dependencies
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
-install that via:
+Element dependencies are managed via [Bower](http://bower.io/). You can install that via:
 
     npm install -g bower
 
@@ -64,8 +64,3 @@ And you can run it via:
 
 Once running, you can preview your element at
 `http://localhost:8080/components/things-full-dialog/`, where `things-full-dialog` is the name of the directory containing it.
-
-
-## Example 1. Things date picker
-`<things-full-dialog>` 애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다.
-** 주의 : 이 Dialog는 Document에 등록되는 Event를 Trigger하기에 한 시스템에 단 한번만 사용될 것을 권장한다.
