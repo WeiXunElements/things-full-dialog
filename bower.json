@@ -1,8 +1,8 @@
 {
   "name": "things-full-dialog",
-  "version": "v2.2.0",
+  "version": "v2.2.1",
   "authors": [
-    "Hatio Lab. <heartyoh@hatiolab.com>"
+    "Shenzhen Weixun"
   ],
   "description": "프로젝트에서 하나의 다이얼로그로 모든 화면을 담을 컨테이너 다이얼로그 Things.ViewOpenBehavior와 동시에 사용된다.",
   "keywords": [
@@ -11,8 +11,6 @@
     "seed"
   ],
   "main": "things-full-dialog.html",
-  "license": "http://license.hatiolab.com/EULA",
-  "homepage": "http://elements.hatiolab.com/",
   "ignore": [
     "/.*",
     "/test/"

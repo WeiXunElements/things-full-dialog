@@ -1,91 +1,84 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <title>things-full-dialog demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-  <title>things-full-dialog demo</title>
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../polymer/polymer.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html" />
+    <link rel="import" href="../../things-button/things-button.html" />
 
-  <link rel="import" href="../../polymer/polymer.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../things-button/things-button.html">
+    <link rel="import" href="../things-full-dialog.html" />
 
-    <link rel="import" href="../things-full-dialog.html">
+    <style is="custom-style">
+      .output {
+        margin-top: 20px;
+        word-wrap: break-word;
+        @apply (--paper-font-common-code);
+      }
+      form > paper-button {
+        width: 45%;
+        margin-top: 20px;
+      }
+      form > paper-button:not([disabled]) {
+        background: var(--paper-light-blue-500);
+        color: white;
+      }
+      button {
+        margin-top: 20px;
+      }
+      paper-spinner {
+        width: 14px;
+        height: 14px;
+        margin-right: 20px;
+      }
+      paper-dropdown-menu {
+        display: block;
+      }
+      demo-snippet {
+        --demo-snippet-code: {
+          max-height: 300px;
+        }
+      }
+    </style>
+  </head>
 
-  <style is="custom-style">
+  <body unresolved>
+    <demo-snippet class="centered-demo">
+      <template>
+        <sample-full-dialog></sample-full-dialog>
 
-    .output {
-      margin-top: 20px;
-      word-wrap: break-word;
-      @apply(--paper-font-common-code);
-    }
-    form > paper-button {
-      width: 45%;
-      margin-top: 20px;
-    }
-    form > paper-button:not([disabled]) {
-      background: var(--paper-light-blue-500);
-      color: white;
-    }
-    button {
-      margin-top: 20px;
-    }
-    paper-spinner {
-      width: 14px;
-      height: 14px;
-      margin-right: 20px;
-    }
-    paper-dropdown-menu {
-      display: block;
-    }
-    demo-snippet {
-      --demo-snippet-code: {
-        max-height: 300px;
-      };
-    }
+        <dom-module id="sample-full-dialog">
+          <template>
+            <things-full-dialog id="common-full-dialog"> </things-full-dialog>
 
-  </style>
+            <things-button on-tap="openDialog">Open</things-button>
+          </template>
 
-</head>
+          <template is="dom-bind" id="sample-template">
+            <things-input value="Things Full Dialog"></things-input>
+          </template>
 
-<body unresolved>
-  <demo-snippet class="centered-demo">
-    <template>
-      <sample-full-dialog></sample-full-dialog>
+          <script>
+            Polymer({
+              is: 'sample-full-dialog',
 
-      <dom-module id="sample-full-dialog">
-        <template>
-          <things-full-dialog
-            id="common-full-dialog">
-          </things-full-dialog>
-
-          <things-button on-tap="openDialog">Open</things-button>
-        </template>
-
-        <template is="dom-bind" id="sample-template">
-          <things-input value="Things Full Dialog"></things-input>
-        </template>
-
-        <script>
-          Polymer({
-            is: "sample-full-dialog",
-
-            openDialog: function() {
-              var element = document.createElement(null);
-              var dialog = this.$['common-full-dialog'];
-              dialog.openBasicDialog(element, true, null);
-            }
-          });
-        </script>
-      </dom-module>
-    </template>
-  </demo-snippet>
-
-</body>
+              openDialog: function () {
+                var element = document.createElement(null);
+                var dialog = this.$['common-full-dialog'];
+                dialog.openBasicDialog(element, true, null);
+              },
+            });
+          </script>
+        </dom-module>
+      </template>
+    </demo-snippet>
+  </body>
 </html>

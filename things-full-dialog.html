@@ -1,14 +1,14 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../neon-animation/animations/scale-up-animation.html">
-<link rel="import" href="../neon-animation/animations/fade-out-animation.html">
-<link rel="import" href="../paper-dialog/paper-dialog.html">
-<link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
-<link rel="import" href="../paper-scroll-header-panel/paper-scroll-header-panel.html">
-<link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../neon-animation/animations/scale-up-animation.html" />
+<link rel="import" href="../neon-animation/animations/fade-out-animation.html" />
+<link rel="import" href="../paper-dialog/paper-dialog.html" />
+<link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html" />
+<link rel="import" href="../paper-scroll-header-panel/paper-scroll-header-panel.html" />
+<link rel="import" href="../paper-toolbar/paper-toolbar.html" />
 
 <!--
 ### 애플리케이션에 단 하나만 존재하고 다이얼로그가 오픈 될 때 마다 화면 구성을 다시하여 오픈한다.
@@ -25,194 +25,196 @@ Copyright © HatioLab Inc. All rights reserved.
   <style>
     :host {
       display: inline-block;
-      @apply(--layout-vertical)
+      @apply (--layout-vertical);
     }
     paper-toolbar {
-      background-color:var(--things-primary-background-color);
-      height:45px;
-      margin-top:0px !important;
-      @apply(--things-padding-clear)
+      background-color: var(--things-primary-background-color);
+      height: 45px;
+      margin-top: 0px !important;
+      @apply (--things-padding-clear);
     }
     paper-toolbar::shadow #topBar {
-      height:45px;
-      @apply(--things-padding-clear)
+      height: 45px;
+      @apply (--things-padding-clear);
     }
     paper-dialog {
       position: fixed;
       top: 10%;
-      bottom:10%;
+      bottom: 10%;
       left: 15%;
       right: 15%;
       margin: 0px;
-      @apply(--layout-flex);
-      @apply(--layout-vertical);
+      @apply (--layout-flex);
+      @apply (--layout-vertical);
     }
     .buttonsGroup {
-      @apply(--layout-horizontal);
-      @apply(--layout-end-justified);
-      @apply(--layout-flex);
+      @apply (--layout-horizontal);
+      @apply (--layout-end-justified);
+      @apply (--layout-flex);
     }
     .scrollroot {
-      @apply(--layout-flex);
-      @apply(--layout-vertical);
-      @apply(--things-padding-clear);
-      @apply(--things-margin-clear);
-      overflow:auto;
+      @apply (--layout-flex);
+      @apply (--layout-vertical);
+      @apply (--things-padding-clear);
+      @apply (--things-margin-clear);
+      overflow: auto;
     }
-    .scrollroot::content #detail-view{
-      @apply(--layout-flex);
+    .scrollroot::content #detail-view {
+      @apply (--layout-flex);
     }
-    .title{
-      margin-left:20px !important;
-      font-size:20px;
-      font-weight:400;
+    .title {
+      margin-left: 20px !important;
+      font-size: 20px;
+      font-weight: 400;
     }
-    .close-btn{
-      @apply(--things-header-button);
-      background:url(/images/icon-close.png) 100% 50% no-repeat;
-      margin-right:10px;
+    .close-btn {
+      @apply (--things-header-button);
+      background: url(/images/icon-close.png) 100% 50% no-repeat;
+      margin-right: 10px;
     }
-    button:focus{
-      outline:none;
+    button:focus {
+      outline: none;
     }
   </style>
 
   <template>
-    <paper-dialog
-      id='dialog'
-      entry-animation="scale-up-animation"
-      exit-animation="fade-out-animation">
+    <paper-dialog id="dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
       <paper-toolbar>
         <span class="title">[[title]]</span>
         <div class="buttonsGroup">
-            <button dialog-dismiss class="close-btn"></button>
+          <button dialog-dismiss class="close-btn"></button>
         </div>
       </paper-toolbar>
 
-      <div id="scrollroot" class="scrollroot">
-      </div>
+      <div id="scrollroot" class="scrollroot"></div>
     </paper-dialog>
   </template>
 
   <script>
-  Polymer({
+    Polymer({
+      is: 'things-full-dialog',
 
-    is: 'things-full-dialog',
+      properties: {
+        /**
+         * 다이얼로그 타이틀
+         * *******
+         * @type {String}
+         */
+        title: {
+          type: String,
+        },
 
-    properties: {
-      /**
-       * 다이얼로그 타이틀
-       * *******
-       * @type {String}
-       */
-      title: {
-        type: String
+        /**
+         * Dialog 내에 포함될 뷰
+         * *******
+         * @type {Object}
+         */
+        detailView: {
+          type: Object,
+        },
+
+        /**
+         * Dialog가 오픈된 후 콜백
+         * *******
+         * @type {Function}
+         */
+        openCallback: {
+          type: Function,
+        },
+      },
+
+      listeners: {
+        'dialog.iron-overlay-opened': '_openHandler',
       },
 
       /**
-      * Dialog 내에 포함될 뷰
-      * *******
-      * @type {Object}
-      */
-      detailView: {
-        type: Object
+       * Life Cycle
+       * *******
+       */
+      attached: function () {
+        // add event listners to dccumnet to listen gloabl event
+        document.addEventListener(
+          'things-open-full-screen-view',
+          function (event) {
+            var request = event.detail;
+            this.openFullScreenDialog(request.view, request.modal, request.record);
+          }.bind(this)
+        );
+
+        document.addEventListener(
+          'things-open-popup-view',
+          function (event) {
+            var request = event.detail;
+            this.openBasicDialog(request.view, request.modal, request.openCallback);
+          }.bind(this)
+        );
+
+        document.addEventListener(
+          'things-close-popup-view',
+          function (event) {
+            this.closeBasicDialog();
+          }.bind(this)
+        );
       },
 
       /**
-       * Dialog가 오픈된 후 콜백
-       * *******
-       * @type {Function}
+       * View를 Full Screen 다이얼로그 내에 오픈한다.
+       *********
+       * @param {Object} view 오픈할 view
+       * @param {Boolean} modal modal로 오픈할 지 여부
        */
-      openCallback: {
-        type: Function
-      }
-    },
+      openFullScreenDialog: function (view, modal, record) {
+        // TODO
+      },
 
-    listeners: {
-      'dialog.iron-overlay-opened' : '_openHandler'
-    },
+      /**
+       * View를 기본적인 다이얼로그 내에 오픈한다.
+       *******
+       * @param {Object} view 오픈할 view
+       * @param {Boolean} modal modal로 오픈할 지 여부
+       * @param {Object} openCallback
+       */
+      openBasicDialog: function (view, modal, openCallback) {
+        var dialog = this.$.dialog;
+        this.title = view.title;
+        dialog.modal = modal;
+        dialog.noCancelOnEscKey = false;
+        var scrollable = this.$.scrollroot;
 
-    /**
-     * Life Cycle
-     * *******
-     */
-    attached: function () {
-      // add event listners to dccumnet to listen gloabl event
-      document.addEventListener('things-open-full-screen-view', function(event) {
-        var request = event.detail;
-        this.openFullScreenDialog(request.view, request.modal, request.record);
-      }.bind(this));
-
-      document.addEventListener('things-open-popup-view', function(event) {
-        var request = event.detail;
-        this.openBasicDialog(request.view, request.modal, request.openCallback);
-      }.bind(this));
-
-      document.addEventListener('things-close-popup-view', function(event) {
-        this.closeBasicDialog();
-      }.bind(this));
-    },
-
-    /**
-     * View를 Full Screen 다이얼로그 내에 오픈한다.
-     *********
-     * @param {Object} view 오픈할 view
-     * @param {Boolean} modal modal로 오픈할 지 여부
-     */
-    openFullScreenDialog: function(view, modal, record) {
-      // TODO
-    },
-
-    /**
-     * View를 기본적인 다이얼로그 내에 오픈한다.
-     *******
-     * @param {Object} view 오픈할 view
-     * @param {Boolean} modal modal로 오픈할 지 여부
-     * @param {Object} openCallback
-     */
-    openBasicDialog: function(view, modal, openCallback) {
-      var dialog = this.$.dialog;
-      this.title = view.title;
-      dialog.modal = modal;
-      dialog.noCancelOnEscKey = false;
-      var scrollable = this.$.scrollroot;
-
-      if(this.detailView) {
-        try {
-          scrollable.removeChild(this.detailView);
-        } catch(e) {
-          console.log(e);
+        if (this.detailView) {
+          try {
+            scrollable.removeChild(this.detailView);
+          } catch (e) {
+            console.log(e);
+          }
         }
-      }
 
-      if(this.openCallback) {
-        this.openCallback = null;
-      }
+        if (this.openCallback) {
+          this.openCallback = null;
+        }
 
-      this.detailView = view;
-      this.openCallback = openCallback;
-      scrollable.appendChild(this.detailView);
-      dialog.open();
-    },
+        this.detailView = view;
+        this.openCallback = openCallback;
+        scrollable.appendChild(this.detailView);
+        dialog.open();
+      },
 
-    /**
-     * View를 기본적인 다이얼로그 내에 닫는다.
-     * ********
-     */
-    closeBasicDialog: function() {
-      this.$.dialog.close();
-    },
+      /**
+       * View를 기본적인 다이얼로그 내에 닫는다.
+       * ********
+       */
+      closeBasicDialog: function () {
+        this.$.dialog.close();
+      },
 
-    /**
-     * 다이얼로그가 오픈된 경우 핸들러
-     */
-    _openHandler: function(e) {
-      if(this.openCallback) {
-        this.openCallback.apply(this.detailView);
-      }
-    }
-
-  });
+      /**
+       * 다이얼로그가 오픈된 경우 핸들러
+       */
+      _openHandler: function (e) {
+        if (this.openCallback) {
+          this.openCallback.apply(this.detailView);
+        }
+      },
+    });
   </script>
-
 </dom-module>
