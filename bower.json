@@ -1,6 +1,6 @@
 {
   "name": "things-full-dialog",
-  "version": "v2.2.1",
+  "version": "v2.2.2",
   "authors": [
     "Shenzhen Weixun"
   ],
@@ -26,6 +26,6 @@
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "web-component-tester": "^4.0.0",
     "iron-demo-helpers": "^1.2.3",
-    "things-button": "ThingsElements/things-button"
+    "things-button": "WeiXunElements/things-button"
   }
 }
